@@ -1,5 +1,7 @@
 package br.com.ms.email.models;
 
+import br.com.ms.email.dtos.Code2FADto;
+import br.com.ms.email.dtos.PaymentConfirmationDto;
 import br.com.ms.email.enums.StatusEmail;
 import jakarta.persistence.*;
 
@@ -85,5 +87,26 @@ public class EmailModel implements Serializable {
 
     public void setStatusEmail(StatusEmail statusEmail) {
         this.statusEmail = statusEmail;
+    }
+
+    public static EmailModel createCodeEmail(Code2FADto code2FADto) {
+        EmailModel emailModel = new EmailModel();
+        emailModel.setUserId(code2FADto.userId());
+        emailModel.setEmailTo(code2FADto.emailTo());
+        emailModel.setSubject("Código de verificação: " + code2FADto.code2FA());
+        emailModel.setText("O seu código de verificação é " + code2FADto.code2FA() + ".\n" +
+                "Se você não solicitou isso, simplesmente ignore esta mensagem.\n\n" +
+                "Atenciosamente,\n" +
+                "A Equipe do Acabou o Mony!");
+        return emailModel;
+    }
+
+    public static EmailModel createConfirmationEmail(PaymentConfirmationDto paymentConfirmationDto) {
+        EmailModel emailModel = new EmailModel();
+        emailModel.setUserId(paymentConfirmationDto.userId());
+        emailModel.setEmailTo(paymentConfirmationDto.emailTo());
+        emailModel.setSubject("Adicionar assunto");
+        emailModel.setText("Adicionar texto");
+        return emailModel;
     }
 }

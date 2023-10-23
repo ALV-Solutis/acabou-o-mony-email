@@ -1,6 +1,7 @@
 package br.com.ms.email.consumers;
 
 import br.com.ms.email.dtos.Code2FADto;
+import br.com.ms.email.dtos.PaymentConfirmationDto;
 import br.com.ms.email.models.EmailModel;
 import br.com.ms.email.services.EmailService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -17,18 +18,20 @@ public class EmailConsumer {
     }
 
     /*
-    Método transforma os dados recebidos da fila do RabbitMQ em um emailModel e utiliza
+    Método transforma os dados recebidos da fila do RabbitMQ em um emailModel
+    e utiliza o método sendEmail para enviar o emailModel instanciado e atualizado.
      */
     @RabbitListener(queues = "${broker.queue.email.name}")
     public void listenCode2FA (@Payload Code2FADto code2FADto) {
-        EmailModel emailModel = new EmailModel();
-        emailModel.setUserId(code2FADto.userId());
-        emailModel.setEmailTo(code2FADto.emailTo());
-        emailModel.setSubject("Código de verificação: " + code2FADto.code2FA());
-        emailModel.setText("O seu código de verificação é " + code2FADto.code2FA() + ".\n" +
-                "Se você não solicitou isso, simplesmente ignore esta mensagem.\n\n" +
-                "Atenciosamente,\n" +
-                "A Equipe do Acabou o Mony!");
+        EmailModel emailModel = EmailModel.createCodeEmail(code2FADto);
         emailService.sendEmail(emailModel);
     }
+
+    @RabbitListener(queues = "${broker.queue.email2.name}")
+    public void listenPaymentConfirmation (@Payload PaymentConfirmationDto paymentConfirmationDto) {
+        EmailModel emailModel = EmailModel.createConfirmationEmail(paymentConfirmationDto);
+        emailService.sendEmail(emailModel);
+    }
+
+
 }

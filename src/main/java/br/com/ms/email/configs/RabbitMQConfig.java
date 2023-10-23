@@ -10,12 +10,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    @Value("${broker.queue.email.name}")
-    private String queue;
+    @Value("${broker.queue.email.name.confirmation}")
+    private String queueConfirmation;
+    @Value("${broker.queue.email.name.authentication}")
+    private String queueCode2FA;
 
     @Bean
-    public Queue queue() {
-        return new Queue(queue, true);
+    public Queue queueConfirmation() {
+        return new Queue(queueConfirmation, true);
+    }
+
+    @Bean
+    public Queue queueCode2FA() {
+        return new Queue(queueCode2FA, true);
     }
 
     @Bean

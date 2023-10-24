@@ -8,7 +8,7 @@
         <version>3.1.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>br.com.ms</groupId>
+    <groupId>br.com.acaboumony</groupId>
     <artifactId>email</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>email</name>
@@ -53,6 +53,12 @@
             <artifactId>spring-rabbit-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

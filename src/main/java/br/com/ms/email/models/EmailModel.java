@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
+@Table(name = "emails")
 public class EmailModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -89,24 +90,4 @@ public class EmailModel implements Serializable {
         this.statusEmail = statusEmail;
     }
 
-    public static EmailModel createCodeEmail(Code2FADto code2FADto) {
-        EmailModel emailModel = new EmailModel();
-        emailModel.setUserId(code2FADto.userId());
-        emailModel.setEmailTo(code2FADto.emailTo());
-        emailModel.setSubject("Código de verificação: " + code2FADto.code2FA());
-        emailModel.setText("O seu código de verificação é " + code2FADto.code2FA() + ".\n" +
-                "Se você não solicitou isso, simplesmente ignore esta mensagem.\n\n" +
-                "Atenciosamente,\n" +
-                "A Equipe do Acabou o Mony!");
-        return emailModel;
-    }
-
-    public static EmailModel createConfirmationEmail(PaymentConfirmationDto paymentConfirmationDto) {
-        EmailModel emailModel = new EmailModel();
-        emailModel.setUserId(paymentConfirmationDto.userId());
-        emailModel.setEmailTo(paymentConfirmationDto.emailTo());
-        emailModel.setSubject("Adicionar assunto");
-        emailModel.setText("Adicionar texto");
-        return emailModel;
-    }
 }

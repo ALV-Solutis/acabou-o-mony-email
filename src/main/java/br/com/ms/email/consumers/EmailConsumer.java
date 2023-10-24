@@ -17,19 +17,15 @@ public class EmailConsumer {
         this.emailService = emailService;
     }
 
-    /*
-    Método transforma os dados recebidos da fila do RabbitMQ em um emailModel
-    e utiliza o método sendEmail para enviar o emailModel instanciado e atualizado.
-     */
-    @RabbitListener(queues = "${broker.queue.email.name}")
+    @RabbitListener(queues = "${broker.queue.email.name.authentication}")
     public void listenCode2FA (@Payload Code2FADto code2FADto) {
-        EmailModel emailModel = EmailModel.createCodeEmail(code2FADto);
+        EmailModel emailModel = emailService.createCodeEmail(code2FADto);
         emailService.sendEmail(emailModel);
     }
 
-    @RabbitListener(queues = "${broker.queue.email2.name}")
+    @RabbitListener(queues = "${broker.queue.email.name.confirmation}")
     public void listenPaymentConfirmation (@Payload PaymentConfirmationDto paymentConfirmationDto) {
-        EmailModel emailModel = EmailModel.createConfirmationEmail(paymentConfirmationDto);
+        EmailModel emailModel = emailService.createConfirmationEmail(paymentConfirmationDto);
         emailService.sendEmail(emailModel);
     }
 

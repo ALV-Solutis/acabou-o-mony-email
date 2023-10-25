@@ -1,4 +1,4 @@
-package br.com.ms.email.dtos;
+package br.com.ms.email.dto;
 
 import java.util.UUID;
 

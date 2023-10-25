@@ -1,7 +1,5 @@
-package br.com.ms.email.models;
+package br.com.ms.email.model;
 
-import br.com.ms.email.dtos.Code2FADto;
-import br.com.ms.email.dtos.PaymentConfirmationDto;
 import br.com.ms.email.enums.StatusEmail;
 import jakarta.persistence.*;
 

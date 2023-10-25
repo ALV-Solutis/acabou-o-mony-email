@@ -1,10 +1,10 @@
-package br.com.ms.email.services;
+package br.com.ms.email.service;
 
-import br.com.ms.email.dtos.Code2FADto;
-import br.com.ms.email.dtos.PaymentConfirmationDto;
+import br.com.ms.email.dto.Code2FADto;
+import br.com.ms.email.dto.PaymentConfirmationDto;
 import br.com.ms.email.enums.StatusEmail;
-import br.com.ms.email.models.EmailModel;
-import br.com.ms.email.repositories.EmailRepository;
+import br.com.ms.email.model.EmailModel;
+import br.com.ms.email.repository.EmailRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;

@@ -1,11 +1,11 @@
-server.port=8082
+server.port=0
 
 spring.datasource.url=jdbc:postgresql://localhost:5432/acabouomony-email
 spring.datasource.username=postgres
-spring.datasource.password=user
+spring.datasource.password= //senha do banco
 spring.jpa.hibernate.ddl-auto=update
 
-spring.rabbitmq.addresses=amqps://zugxefvv:vk2w0-38LYLORTFVDAm5bhugZDa7ITR4@jackal.rmq.cloudamqp.com/zugxefvv
+spring.rabbitmq.addresses= //endereço do rabbitMQ
 
 broker.queue.email.name.confirmation=default.confirmation
 broker.queue.email.name.authentication=default.code2fa
@@ -16,3 +16,7 @@ spring.mail.username=acabouomony@gmail.com
 spring.mail.password=shkm jiqb ynhc yclv
 spring.mail.properties.mail.smtp.auth=true
 spring.mail.properties.mail.smtp.starttls.enable=true
+
+spring.application.name=acaboumony-email
+eureka.client.serviceUrl.defaultZone=http://localhost:8084/eureka
+eureka.instance.instance-id=${spring.application.name}:${random.int}

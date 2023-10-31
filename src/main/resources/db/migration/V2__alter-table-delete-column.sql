@@ -1,0 +1,1 @@
+alter table emails drop column status_mail;

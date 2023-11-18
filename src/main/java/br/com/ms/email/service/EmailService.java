@@ -65,10 +65,10 @@ public class EmailService {
         EmailModel emailModel = new EmailModel();
         emailModel.setUserId(paymentConfirmationDto.userId());
         emailModel.setEmailTo(paymentConfirmationDto.emailTo());
-        emailModel.setSubject("Pedido " + paymentConfirmationDto.orderNumber() + ": " + paymentConfirmationDto.status());
+        emailModel.setSubject("Pagamento: #" + paymentConfirmationDto.paymentId() + " - " + paymentConfirmationDto.status());
         emailModel.setText(String.format(
                 "Olá, " + paymentConfirmationDto.nameUser() + "!\n\n" +
-                        "Seu pedido " + paymentConfirmationDto.orderNumber() + " no valor de R$"
+                        "Seu pedido de pagamento #" + paymentConfirmationDto.paymentId() + " no valor de R$"
                         + paymentConfirmationDto.value() + " foi " + paymentConfirmationDto.status() + "\n\n" +
                         "Atenciosamente,\nEquipe do Acabou o Mony."
         ));
